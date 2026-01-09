@@ -88,5 +88,5 @@ jobs:
           username: deploy
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            sudo chown -R deploy:www-data /home/deploy/apps/backend-python-docs
-            sudo chmod -R 755 /home/deploy/apps/backend-python-docs
+            sudo chown -R deploy:deploy /home/deploy/apps/backend-python-docs
+            sudo chmod -R o+rX /home/deploy/apps/backend-python-docs
