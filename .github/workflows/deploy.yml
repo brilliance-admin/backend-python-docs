@@ -56,7 +56,7 @@ jobs:
           remote_key: ${{ secrets.SERVER_SSH_KEY }}
 
   update-nginx:
-    needs: deploy
+    needs: build-deploy-docs
     runs-on: ubuntu-latest
     if: ${{ success() }}
     steps:
