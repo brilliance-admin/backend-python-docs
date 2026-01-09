@@ -119,3 +119,10 @@ p {
   border-width: 0;
   border-left-width: 4px;
 }
+[data-md-color-scheme='slate'] .md-typeset .admonition,
+[data-md-color-scheme='slate'] .md-typeset details {
+    border: none;
+    border-left: 4px solid #30363d;
+    background-color: #161b22;
+    border-radius: 6px;
+}
