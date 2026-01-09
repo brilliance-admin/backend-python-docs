@@ -5,23 +5,12 @@ on:
     branches: [ main ]
 
 jobs:
-  build-deploy-docs:
+  deploy-docs:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-
-      - name: Install uv
-        run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-
-      - name: Sync dependencies
-        run: uv sync
-
-      - name: Build MkDocs
-        run: uv run mkdocs build --clean
 
       - name: Ensure rsync installed on server
         uses: appleboy/ssh-action@master
@@ -35,32 +24,40 @@ jobs:
               sudo apt install -y rsync
             fi
 
-      - name: Fix folder permissions
+      - name: Sync docs repo to server
+        uses: burnett01/rsync-deployments@v8
+        with:
+          switches: -avzr --delete
+          path: .
+          remote_path: /home/deploy/apps/backend-python-docs
+          remote_host: ${{ vars.SERVER_HOST }}
+          remote_user: deploy
+          remote_key: ${{ secrets.SERVER_SSH_KEY }}
+
+      - name: Build docs on server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ vars.SERVER_HOST }}
           username: deploy
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            sudo mkdir -p /home/deploy/apps/backend-python-docs
-            sudo chown -R deploy:deploy /home/deploy/apps/backend-python-docs
+            cd /home/deploy/apps/backend-python-docs
 
-      - name: Deploy docs via rsync
-        uses: burnett01/rsync-deployments@v8
-        with:
-          switches: -avzr --delete
-          path: site/
-          remote_path: /home/deploy/apps/backend-python-docs
-          remote_host: ${{ vars.SERVER_HOST }}
-          remote_user: deploy
-          remote_key: ${{ secrets.SERVER_SSH_KEY }}
+            if ! command -v uv >/dev/null 2>&1; then
+              curl -LsSf https://astral.sh/uv/install.sh | sh
+              echo "$HOME/.cargo/bin" >> ~/.profile
+              export PATH="$HOME/.cargo/bin:$PATH"
+            fi
+
+            uv sync
+            uv run mkdocs build --clean
 
   update-nginx:
-    needs: build-deploy-docs
+    needs: deploy-docs
     runs-on: ubuntu-latest
     if: ${{ success() }}
-    steps:
 
+    steps:
       - name: Ensure nginx is running
         uses: appleboy/ssh-action@master
         with:
@@ -80,11 +77,6 @@ jobs:
           username: deploy
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            if ! command -v nginx >/dev/null 2>&1; then
-              sudo apt update
-              sudo apt install -y nginx
-            fi
-
             sudo ln -sf /home/deploy/apps/backend-python-docs/.configs/nginx/docs.conf /etc/nginx/sites-enabled/docs.brilliance-admin.com
             sudo rm -f /etc/nginx/sites-enabled/default
             sudo nginx -t
