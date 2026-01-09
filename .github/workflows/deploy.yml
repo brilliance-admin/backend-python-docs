@@ -54,3 +54,38 @@ jobs:
           remote_host: ${{ vars.SERVER_HOST }}
           remote_user: deploy
           remote_key: ${{ secrets.SERVER_SSH_KEY }}
+
+  update-nginx:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: ${{ success() }}
+    steps:
+
+      - name: Ensure nginx is running
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SERVER_HOST }}
+          username: deploy
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            if ! systemctl is-active --quiet nginx; then
+              sudo systemctl start nginx
+            fi
+            sudo systemctl status nginx --no-pager
+
+      - name: Update nginx config for docs
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SERVER_HOST }}
+          username: deploy
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            if ! command -v nginx >/dev/null 2>&1; then
+              sudo apt update
+              sudo apt install -y nginx
+            fi
+
+            sudo ln -sf /home/deploy/apps/backend-python-docs/.configs/nginx/docs.conf /etc/nginx/sites-enabled/admin.brilliance-admin.com
+            sudo rm -f /etc/nginx/sites-enabled/default
+            sudo nginx -t
+            sudo systemctl reload nginx
