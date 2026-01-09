@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="https://github.com/brilliance-admin/backend-python/blob/main/example/static/logo-outline.png?raw=true"
-       alt="Brilliance Admin"
+  <img src="assets/logo.png"
+       style="min-height: 117px;"
        width="600">
 
   <p>
@@ -24,7 +24,8 @@
   <a href="https://github.com/brilliance-admin/backend-python">Github Repo</a>
 </h3>
 
-  <img src="https://github.com/brilliance-admin/backend-python/blob/main/screenshots/websitemockupgenerator.png?raw=true"
+  <img src="assets/websitemockupgenerator.png"
+       style="min-height: 360px;"
        alt="Preview">
 
 </div>

@@ -1,11 +1,14 @@
 .md-main__inner {
     max-width: 1480px;
 }
-
 .md-content {
     max-width: 1480px;
 }
+.md-content__inner.md-typeset {
+    padding: 0px 20px !important;
+}
 
+/* Скрыть заголовки */
 .md-content article.md-content__inner.md-typeset > h1:first-child {
     display: none;
 }
@@ -23,6 +26,7 @@ p {
     margin: 10px 0px;
 }
 
+/* Заголовки жирным */
 .md-content h1,
 .md-content h2,
 .md-content h3,
@@ -30,14 +34,81 @@ p {
 .md-content h5,
 .md-content h6 {
     font-weight: 700;
+    margin: 30px 0 15px;
 }
 
-.md-content h1 {
+/* Цвет подсветки */
+[data-md-color-scheme='slate'] .md-content h1 {
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 0.3em;
 }
-
-.md-content h2 {
+[data-md-color-scheme='slate'] .md-content h2 {
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     padding-bottom: 0.2em;
+}
+
+
+/* Цвет текста ярче */
+[data-md-color-scheme='slate'] .md-content {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+[data-md-color-scheme='slate'] .md-content strong {
+    color: rgba(255, 255, 255, 1) !important;
+}
+[data-md-color-scheme='slate'] .md-typeset p {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Фон страницы */
+[data-md-color-scheme='slate'],
+[data-md-color-scheme='slate'] body,
+[data-md-color-scheme='slate'] .md-container,
+[data-md-color-scheme='slate'] .md-main,
+[data-md-color-scheme='slate'] .md-main__inner,
+[data-md-color-scheme='slate'] .md-content {
+    background-color: #11161c;
+}
+[data-md-color-scheme='slate'] .md-content__inner.md-typeset {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1.2rem;
+}
+
+/* Фон таблиц */
+[data-md-color-scheme='slate'] .md-typeset table {
+    background-color: #11161c;
+}
+[data-md-color-scheme='slate'] .md-typeset th,
+[data-md-color-scheme='slate'] .md-typeset td {
+    background-color: #11161c;
+}
+/* hover строки */
+[data-md-color-scheme='slate'] .md-typeset tbody tr:hover td {
+    background-color: #161b22;
+}
+
+/* Цвет фона кода */
+[data-md-color-scheme='slate'] .md-typeset .highlight code {
+    background-color: #141a20 !important;
+}
+/* Цвет номеров строк */
+[data-md-color-scheme='slate'] {
+    --md-code-bg-color: #141a20;
+    --md-code-fg-color: #c9d1d9;
+    --md-code-hl-number-color: #6e7681;
+}
+
+
+/* font как у GitHub */
+.md-content,
+.md-typeset {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Цвет цитат */
+[data-md-color-scheme='slate'] .md-typeset blockquote p {
+    color: #9198a1;
 }
