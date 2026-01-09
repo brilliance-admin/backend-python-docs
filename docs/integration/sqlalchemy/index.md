@@ -6,9 +6,8 @@ Supports automatic schema generation for CRUD tables:
 ``` python
 category = sqlalchemy.SQLAlchemyAdmin(db_async_session=async_sessionmaker, model=Terminal)
 ```
-
-> [!NOTE]
-> If `table_schema` is not specified, it will be generated automatically with all discovered fields and relationships
+!!! info
+    If `table_schema` is not specified, it will be generated automatically with all discovered fields and relationships
 
 Now, the `category` instance can be passed to `categories`.
 

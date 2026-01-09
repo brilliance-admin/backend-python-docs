@@ -80,3 +80,13 @@ jobs:
             sudo rm -f /etc/nginx/sites-enabled/default
             sudo nginx -t
             sudo systemctl reload nginx
+
+      - name: Fix permissions for nginx
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SERVER_HOST }}
+          username: deploy
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            sudo chown -R deploy:www-data /home/deploy/apps/backend-python-docs
+            sudo chmod -R 755 /home/deploy/apps/backend-python-docs
