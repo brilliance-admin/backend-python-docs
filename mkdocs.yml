@@ -1,0 +1,40 @@
+site_name: Brilliance Admin
+
+plugins:
+    - search
+    - macros
+
+extra_css:
+  - stylesheets/extra.css
+
+repo_url: https://github.com/brilliance-admin/backend-python
+repo_name: brilliance-admin/backend-python
+
+theme:
+  name: material
+  favicon: assets/favicon.jpg
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  palette:
+    - scheme: default
+      primary: black
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra:
+    demo_url: https://brilliance-admin.com
+
+nav:
+  - Overview: index.md
+  - Integrations:
+      - SQLAlchemy: integration/sqlalchemy/index.md

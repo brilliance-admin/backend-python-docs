@@ -1,0 +1,43 @@
+.md-main__inner {
+    max-width: 1480px;
+}
+
+.md-content {
+    max-width: 1480px;
+}
+
+.md-content article.md-content__inner.md-typeset > h1:first-child {
+    display: none;
+}
+
+.md-typeset ul li p {
+    margin: 5px 0;
+}
+.md-typeset ul li {
+    margin-bottom: 5px;
+}
+.md-typeset ul {
+    margin-top: 2px;
+}
+p {
+    margin: 10px 0px;
+}
+
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.md-content h5,
+.md-content h6 {
+    font-weight: 700;
+}
+
+.md-content h1 {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.3em;
+}
+
+.md-content h2 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 0.2em;
+}

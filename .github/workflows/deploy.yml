@@ -1,0 +1,56 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Build MkDocs
+        run: uv run mkdocs build --clean
+
+      - name: Ensure rsync installed on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SERVER_HOST }}
+          username: deploy
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            if ! command -v rsync >/dev/null 2>&1; then
+              sudo apt update
+              sudo apt install -y rsync
+            fi
+
+      - name: Fix folder permissions
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SERVER_HOST }}
+          username: deploy
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            sudo mkdir -p /home/deploy/apps/backend-python-docs
+            sudo chown -R deploy:deploy /home/deploy/apps/backend-python-docs
+
+      - name: Deploy docs via rsync
+        uses: burnett01/rsync-deployments@v8
+        with:
+          switches: -avzr --delete
+          path: site/
+          remote_path: /home/deploy/apps/backend-python-docs/site
+          remote_host: ${{ vars.SERVER_HOST }}
+          remote_user: deploy
+          remote_key: ${{ secrets.SERVER_SSH_KEY }}

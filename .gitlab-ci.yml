@@ -1,0 +1,71 @@
+stages:
+  - build
+  - deploy
+  - rollback
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "test"
+      variables:
+        ENVIRONMENT: "test"
+        DIR: "/srv/gitlab-runner/finstream/docs/internal"
+        SERVER: "Finstream-test"
+    - if: $CI_COMMIT_BRANCH == "master"
+      variables:
+        ENVIRONMENT: "prod"
+        DIR: "/srv/gitlab-runner/finstream/docs/internal"
+        SERVER: "finstream-prod"
+
+
+.build_job:
+  environment:
+    name: $ENVIRONMENT
+  tags:
+    - $SERVER
+  script:
+    - mkdir -p $DIR/paymentgate-api-$CI_PIPELINE_ID/
+    - cp -r * $DIR/paymentgate-api-$CI_PIPELINE_ID/
+    - cd $DIR/paymentgate-api-$CI_PIPELINE_ID/
+
+    - $HOME/.local/bin/uv --version || curl -LsSf https://astral.sh/uv/install.sh | sh
+    - $HOME/.local/bin/uv sync
+
+.deploy_job:
+  environment:
+    name: $ENVIRONMENT
+  tags:
+    - $SERVER
+  script:
+    - cd $DIR/paymentgate-api-$CI_PIPELINE_ID/
+    - $HOME/.local/bin/uv run mkdocs build
+
+    - test -e $DIR/current && mv $DIR/current $DIR/current-$CI_PIPELINE_ID
+    - ln -sf $DIR/paymentgate-api-$CI_PIPELINE_ID/ $DIR/current
+
+.rollback_job:
+  environment:
+    name: $ENVIRONMENT
+  tags:
+    - $SERVER
+  script:
+    - rm $DIR/current
+    - ln -sf $DIR/current-$CI_PIPELINE_ID/ $DIR/current
+
+build:
+  stage: build
+  extends:
+    - .build_job
+
+deploy:
+  stage: deploy
+  needs: [ build ]
+  extends:
+    - .deploy_job
+  when: on_success
+
+rollback:
+  stage: rollback
+  needs: [ deploy ]
+  extends:
+    - .rollback_job
+  when: manual
