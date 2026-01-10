@@ -25,9 +25,11 @@ theme:
   name: material
   favicon: assets/favicon.jpg
 
+
   features:
     - content.code.copy
     - content.code.annotate
+    - navigation.expand
 
   font:
     text: Roboto
@@ -52,5 +54,11 @@ extra:
 
 nav:
   - Overview: index.md
+  - How to start: how-to-start.md
+  - Authentication: authentication.md
+  - Admin Schema:
+      - Main/Group/Category: admin-schema/main.md
+      - Tables: admin-schema/tables.md
+      - Graphs: admin-schema/graphs.md
   - Integrations:
       - SQLAlchemy: integration/sqlalchemy/index.md

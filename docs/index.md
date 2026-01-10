@@ -1,3 +1,18 @@
+<style>
+  .md-typeset h1,
+  .md-content__button {
+    display: none;
+  }
+  
+  .md-content__inner.md-typeset {
+    padding: 20px 20px !important;
+  }
+  .links {
+    font-size: 24px;
+    font-weight: 700;
+  }
+</style>
+
 <div align="center">
   <img src="assets/logo.png"
        style="min-height: 117px;"
@@ -13,16 +28,16 @@
   </p>
 
   <p>
-    Simple and lightweight admin panel framework powered by <code>FastAPI</code> and <code>Vue3</code> <code>Vuetify</code> together.<br>
+    Simple and lightweight admin panel framework powered by <code>FastAPI</code> and <code>Vue3 Vuetify</code> all-in-one.<br>
     Integrated with <code>SQLAlchemy</code>. Inspired by Django Admin and DRF.<br>
     <em>Some call it heavenly in its brilliance.</em>
   </p>
 
-<h3>
+<div class="links">
   <a href="https://brilliance-admin.com/">Live Demo</a> |
   <a href="https://github.com/brilliance-admin/backend-python/tree/main/example">Demo Sources</a> |
   <a href="https://github.com/brilliance-admin/backend-python">Github Repo</a>
-</h3>
+</div>
 
   <img src="assets/websitemockupgenerator.png"
        style="min-height: 360px;"
@@ -30,18 +45,31 @@
 
 </div>
 
-**Key ideas:**
+Documentation work in progress
 
-- **API oriented** <br>
-Works entirely on FastAPI and provides a prebuilt SPA [frontend](https://github.com/brilliance-admin/frontend) via static files (Vue3 + Vuetify). No separate startup is required. <br>
+
+### Brilliance Admin provides
+
+A quick way to create a data management interface using:
+
+- Admin page - endpoint with a prebuilt SPA [frontend Vue3 + Vuetify](https://github.com/brilliance-admin/frontend) <br>
+This endpoint can be added to any ASGI compatable backend. For existing project or standalone admin app.
+- API to fetch the UI JSON schema
+- API methods for that UI to work with (to read and modify data)
+
+## Key ideas
+
+- **API Oriented** <br>
+Data generation/updating API separated from rendering fontend with zero hardcode, this makes it possible to have a single frontend with multiple backend implementations in different languages and makes test coverage easier.
 - **Rich visualization**  <br>
 Providing rich and convenient ways to display and manage data (tables, charts, etc) from any data source.
+- **UI JSON Schema** <br>
+Represents the data describing the structure of entire admin panel UI. <br>
+You only need to specify what should be rendered. The frontend will display it and automatically request data from the backend for rendering or updates.
 - **ORM** <br>
-Automatic schema generation and methods for CRUD operations.
+Automatic generation from ORM for schema UI frontend and backend methods for CRUD operations.
 - **Minimal boilerplate** <br>
 Focused on simplified, but rich configuration.
-
-> Data generation/updating API separated from rendering fontend with zero hardcode, this makes it possible to have a single frontend with multiple backend implementations in different languages and makes test coverage easier.
 
 ## Features
 
@@ -50,7 +78,7 @@ Focused on simplified, but rich configuration.
 * Graphs via ChartJS
 * Localization support
 * Adapted for different screen sizes and mobile devices
-* Authorization via any account data source
+* Auth via any account data source
 
 **Integrations:**
 
@@ -67,9 +95,18 @@ Focused on simplified, but rich configuration.
 
 ## Comparison of Similar Projects
 
+The project closest in concept is [React Admin](https://github.com/marmelab/react-admin). <br>
+It is an SPA frontend that store the schema UI inside and works with API backend providers separately.
+
+The key difference of Brilliance Admin is that its all-in-one. <br>
+It is more focused on rapid setup for data management, without the need to work with frontend configuration, while it still available.
+
+## Comparison of Similar Python Projects
+
 | Criterion | Brilliance Admin | Django Admin | FastAPI Admin | Starlette Admin | SQLAdmin |
-|---------|------------------|---------------------|---------------|-----------------|----------|
-| Base framework | FastAPI | Django | FastAPI | Starlette / FastAPI | FastAPI / Starlette |
+|---------|------------------|--------------|---------------|-----------------|----------|
+| Base framework | FastAPI | Django | FastAPI | Starlette | FastAPI |
+| ASGI compatible | Yes | Partial | Yes | Yes | Yes |
 | Rendering model | Prebuilt Vue 3 + Vuetify SPA + Jinja2 | Server-side Django templates | Server-side Jinja2 templates + Tabler UI | Server-side Jinja2 templates + Tabler UI | Server-side Jinja2 templates + Bootstrap |
 | Frontend architecture | Separate frontend (SPA) | Classic server-rendered UI | Server-rendered UI with JS interactivity | Server-rendered UI with JS interactivity | Server-rendered UI |
 | Data source | Any source + SQLAlchemy | Django ORM | Tortoise ORM | Any source + SQLAlchemy, MongoDB | SQLAlchemy |

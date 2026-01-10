@@ -8,11 +8,6 @@
     padding: 0px 20px !important;
 }
 
-/* Скрыть заголовки */
-.md-content article.md-content__inner.md-typeset > h1:first-child {
-    display: none;
-}
-
 .md-typeset ul li p {
     margin: 5px 0;
 }
@@ -36,6 +31,14 @@ p {
     font-weight: 700;
     margin: 30px 0 15px;
 }
+.md-content * + h1,
+.md-content * + h2,
+.md-content * + h3,
+.md-content * + h4,
+.md-content * + h5,
+.md-content * + h6 {
+    padding-top: 15px;
+}
 
 /* Цвет подсветки */
 [data-md-color-scheme='slate'] .md-content h1 {
@@ -49,6 +52,14 @@ p {
 
 
 /* Цвет текста ярче */
+[data-md-color-scheme='slate'] .md-typeset h1,
+[data-md-color-scheme='slate'] .md-typeset h2,
+[data-md-color-scheme='slate'] .md-typeset h3,
+[data-md-color-scheme='slate'] .md-typeset h4,
+[data-md-color-scheme='slate'] .md-typeset h5,
+[data-md-color-scheme='slate'] .md-typeset h6 {
+    color: rgba(255, 255, 255, 0.9);
+}
 [data-md-color-scheme='slate'] .md-content {
     color: rgba(255, 255, 255, 0.9) !important;
 }
@@ -74,6 +85,18 @@ p {
     border-radius: 8px;
     padding: 1.2rem;
 }
+.md-nav__title {
+    font-size: 24px;
+}
+.md-nav__link {
+    font-size: 16px;
+}
+[data-md-color-scheme='slate'] .md-nav__title {
+    color: rgba(255, 255, 255, 0.9);
+    background: none;
+    box-shadow: none;
+}
+
 
 /* Фон таблиц */
 [data-md-color-scheme='slate'] .md-typeset table {

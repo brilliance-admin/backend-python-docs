@@ -1,5 +1,4 @@
-
-## SQLAlchemy integration
+# SQLAlchemy integration
 
 Supports automatic schema generation for CRUD tables:
 
@@ -11,7 +10,7 @@ category = sqlalchemy.SQLAlchemyAdmin(db_async_session=async_sessionmaker, model
 
 Now, the `category` instance can be passed to `categories`.
 
-### DRF class style schema
+## DRF class style schema
 
 ``` python
 from brilliance_admin import sqlalchemy
@@ -47,7 +46,7 @@ class TerminalAdmin(sqlalchemy.SQLAlchemyAdmin):
 category = TerminalAdmin()
 ```
 
-### Can be used both via inheritance and instancing
+## Can be used both via inheritance and instancing
 
 Optionally, functional-style generation can be used to reduce boilerplate code
 
@@ -70,7 +69,7 @@ category = sqlalchemy.SQLAlchemyAdmin(
 )
 ```
 
-### SQLAlchemy JWT Authentication
+## SQLAlchemy JWT Authentication
 
 ``` python
 auth = sqlalchemy.SQLAlchemyJWTAdminAuthentication(
