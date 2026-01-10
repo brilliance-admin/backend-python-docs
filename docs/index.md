@@ -28,7 +28,7 @@
   </p>
 
   <p>
-    Simple and lightweight admin panel framework powered by <code>FastAPI</code> and <code>Vue3 Vuetify</code> all-in-one.<br>
+    Simple and lightweight data managment framework powered by <code>FastAPI</code> and <code>Vue3 Vuetify</code> all-in-one.<br>
     Integrated with <code>SQLAlchemy</code>. Inspired by Django Admin and DRF.<br>
     <em>Some call it heavenly in its brilliance.</em>
   </p>
@@ -96,7 +96,7 @@ Focused on simplified, but rich configuration.
 ## Comparison of Similar Projects
 
 The project closest in concept is [React Admin](https://github.com/marmelab/react-admin). <br>
-It is an SPA frontend that store the schema UI inside and works with API backend providers separately.
+It is an SPA frontend that store the schema UI inside and works with separate API backend providers.
 
 The key difference of Brilliance Admin is that its all-in-one. <br>
 It is more focused on rapid setup for data management, without the need to work with frontend configuration, while it still available.
