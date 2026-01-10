@@ -1,5 +1,7 @@
 # How to start
 
+todo
+
 ## Installation
 
 To get started, install the `brilliance-admin` package using any package manager:

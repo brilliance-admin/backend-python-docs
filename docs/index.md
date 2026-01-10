@@ -93,6 +93,15 @@ Focused on simplified, but rich configuration.
 * Django ORM integration
 * Support for Oauth providers
 
+## Installation
+
+``` shell
+pip install brilliance-admin
+```
+<div class="links">
+  <a href="how-to-start/">How to start</a>
+</div>
+
 ## Comparison of Similar Projects
 
 The project closest in concept is [React Admin](https://github.com/marmelab/react-admin). <br>
