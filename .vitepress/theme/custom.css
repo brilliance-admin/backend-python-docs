@@ -1,0 +1,26 @@
+/* docs/.vitepress/theme/custom.css */
+
+:root {
+  --content-max-width: 1400px;
+}
+
+/* Убрать ограничение ширины на главной */
+.VPPage .VPContent,
+.VPPage .VPContent > div,
+.VPPage .container,
+.VPPage .content,
+.VPPage .content-container,
+.VPPage .vp-doc {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Общий контейнер секций */
+.section-container {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
