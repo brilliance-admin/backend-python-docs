@@ -7,6 +7,8 @@ sidebar: false
 import tableCode from './snippets/table.py?raw'
 import dashboardCode from './snippets/dashboard.py?raw'
 import actionsCode from './snippets/actions.py?raw'
+import adminExampleCode from './snippets/adminExample.py?raw'
+
 const actionSlides = [
   { image: '/change-password.png', title: 'Custom form dialog' },
   { image: '/action-persistent.png', title: 'Persistent response message' },
@@ -40,11 +42,30 @@ const compRows = [
 
 <FeatureSection
   title="Tables with full CRUD support"
-  description="Filtering, sorting, and pagination out of the box. Automatically generated from your SQLAlchemy models."
+  description="Filtering, sorting, and pagination out of the box. Auto-generated from your SQLAlchemy models, or defined manually from any data source."
   image="/table-black.png"
 >
   <CodeBlock lang="python" :code="tableCode" />
 </FeatureSection>
+
+<FeatureGrid>
+  <FeatureGridCard
+    title="Easy Installation"
+  >
+  Built-in login page with customizable authentication. Supports any account source through a simple interface.<br>
+  Integrates with any ASGI-compatible server.
+  <CodeBlock lang="shell" code="pip install brilliance-admin" />
+  <CodeBlock lang="python" :code="adminExampleCode" />
+  </FeatureGridCard>
+  
+  <FeatureGridCard
+    title="Authentication Providers and i18n"
+    image="/login-black.png"
+  >
+  Supports any account source via a simple login and password interface.<br>
+  Built-in i18n support.
+  </FeatureGridCard>
+</FeatureGrid>
 
 <FeatureSection
   title="Admin Actions"
@@ -56,7 +77,7 @@ const compRows = [
 
 <FeatureSection
   title="Dashboards"
-  description="Create unlimited data pages from any source with your layout."
+  description="Create as many dashboard pages as you need, each with its own layout and data source."
   image="/dashboard-black.png"
   reversed
 >
@@ -70,10 +91,19 @@ const compRows = [
   image-after="/dashboard-black.png"
 ></ShowcaseSection>
 
-<FeatureSection
-  title="Secure Authentication"
-  description="Built-in login page with customizable authentication. Works with any account data source through a simple interface."
-  image="/login-black.png"
-/>
+<comparison-table :headers="compHeaders" :rows="compRows" :highlight="1">
+<template #header>
 
-<comparison-table :headers="compHeaders" :rows="compRows" :highlight="1" />
+## Comparison of Similar Projects
+
+<div class="subtitle">
+<p>The project closest in concept is <a href="https://github.com/marmelab/react-admin" target="_blank">React Admin</a> - SPA frontend that stores the schema UI inside and works with separate API backend providers.</p>
+
+The key difference of Brilliance Admin is that it's all-in-one. <br>
+Brilliance Admin is more focused on rapid setup for data management, without the need to work with frontend configuration, while it's still available.
+
+## Python Projects
+
+</div>
+</template>
+</comparison-table>

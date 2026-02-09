@@ -3,9 +3,11 @@ import { defineConfig } from 'vitepress'
 const nav = {
   en: [
     { text: 'Documentation', link: '/how-to-start' },
+    { text: 'Live Demo', link: 'https://brilliance-admin.com/' },
   ],
   ru: [
     { text: 'Документация', link: '/ru/how-to-start' },
+    { text: 'Live Demo', link: 'https://brilliance-admin.com/' },
   ],
 }
 
@@ -42,6 +44,21 @@ export default defineConfig({
 
   title: 'Brilliance Admin',
   description: ' ',
+
+  head: [
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');`
+    ],
+  ],
 
   vue: {
     template: {

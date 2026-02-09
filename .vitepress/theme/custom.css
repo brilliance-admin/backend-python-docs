@@ -1,5 +1,3 @@
-/* docs/.vitepress/theme/custom.css */
-
 :root {
   --content-max-width: 1400px;
 }
@@ -27,4 +25,8 @@
 
 .VPNav {
   position: relative !important;
+}
+
+.VPContent {
+  padding-top: 0 !important;
 }

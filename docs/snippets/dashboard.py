@@ -1,4 +1,3 @@
-
 class DasbhoardExample(schema.CategoryDashboard):
 
     async def get_data(self, data: DashboardData, user) -> DashboardContainer:

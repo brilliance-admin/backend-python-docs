@@ -52,4 +52,5 @@ onMounted(async () => {
  html:not(.dark) .vp-code-block pre span {
      color: var(--shiki-light) !important;
  }
+
 </style>
