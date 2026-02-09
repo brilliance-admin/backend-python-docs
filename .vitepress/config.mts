@@ -60,6 +60,12 @@ gtag('config', 'G-XXXXXXXXXX');`
     ],
   ],
 
+  vite: {
+    ssr: {
+      noExternal: ['vue3-compare-image', 'shiki'],
+    },
+  },
+
   vue: {
     template: {
       compilerOptions: {

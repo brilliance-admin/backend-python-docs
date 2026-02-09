@@ -38,6 +38,7 @@ const compRows = [
   <a class="brand" href="/how-to-start/">How to Start</a>
   <a class="alt" href="https://brilliance-admin.com/" target="_blank">Live Demo</a>
   <a class="alt" href="https://github.com/brilliance-admin/backend-python" target="_blank">GitHub</a>
+  <p class="hero-remark">Every ⭐ on GitHub - helps to make it even more brilliant!</p>
 </HeroSection>
 
 <FeatureSection
