@@ -62,7 +62,7 @@ gtag('config', 'G-XXXXXXXXXX');`
 
   vite: {
     ssr: {
-      noExternal: ['vue3-compare-image', 'shiki'],
+      noExternal: ['vue3-compare-image'],
     },
   },
 
