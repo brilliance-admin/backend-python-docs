@@ -1,11 +1,34 @@
 <script setup>
-defineProps({
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const props = defineProps({
   title: { type: String, required: true },
   description: { type: String, default: '' },
-  image: { type: String, required: true },
+  image: { type: String, default: '' },
+  slides: { type: Array, default: () => [] },
   imageAlt: { type: String, default: '' },
   reversed: { type: Boolean, default: false },
+  interval: { type: Number, default: 3000 },
 })
+
+const current = ref(0)
+let timer = null
+
+function resetTimer() {
+  clearInterval(timer)
+  if (props.slides.length <= 1) return
+  timer = setInterval(() => {
+    current.value = (current.value + 1) % props.slides.length
+  }, props.interval)
+}
+
+function goTo(i) {
+  current.value = i
+  resetTimer()
+}
+
+onMounted(resetTimer)
+onUnmounted(() => clearInterval(timer))
 </script>
 
 <template>
@@ -17,7 +40,27 @@ defineProps({
         <slot />
       </div>
       <div class="feature-image">
-        <img :src="image" :alt="imageAlt || title" />
+        <div v-if="slides.length" class="slider">
+          <div class="slider-frame">
+            <img
+              v-for="(slide, i) in slides"
+              :key="i"
+              :src="slide.image"
+              :alt="slide.title || title"
+              :class="{ visible: i === current }"
+            />
+            <span v-if="slides[current]?.title" class="caption">{{ slides[current].title }}</span>
+          </div>
+          <div v-if="slides.length > 1" class="dots">
+            <i
+              v-for="(_, i) in slides"
+              :key="i"
+              :class="{ active: i === current }"
+              @click="goTo(i)"
+            />
+          </div>
+        </div>
+        <img v-else-if="image" :src="image" :alt="imageAlt || title" />
       </div>
     </div>
   </section>
@@ -66,10 +109,70 @@ defineProps({
   min-width: 0;
 }
 
-.feature-image img {
+.feature-image > img {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.slider-frame {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.slider-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.slider-frame img:first-child {
+  position: relative;
+}
+
+.slider-frame img.visible {
+  opacity: 1;
+}
+
+.slider-frame .caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 0 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vp-c-divider);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dots i.active {
+  background: var(--vp-c-brand-1);
 }
 
 @media (max-width: 768px) {

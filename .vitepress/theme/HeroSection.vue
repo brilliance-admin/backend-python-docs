@@ -1,24 +1,25 @@
 <script setup>
+defineProps({
+  name: { type: String, required: true },
+  text: { type: String, required: true },
+  tagline: { type: String, required: true },
+  image: { type: String, required: true },
+  imageAlt: { type: String, required: true },
+})
 </script>
 
 <template>
   <div class="custom-hero section-container">
     <div class="hero-content">
-      <h1 class="hero-name">Brilliance Admin</h1>
-      <p class="hero-text">Data Management Framework</p>
-      <p class="hero-tagline">
-        Simple and lightweight, powered by FastAPI and Vue3 Vuetify all-in-one.
-        Integrated with SQLAlchemy. Inspired by Django Admin and DRF.
-        <em>Some call it heavenly in its brilliance.</em>
-      </p>
+      <h1 class="hero-name">{{ name }}</h1>
+      <p class="hero-text">{{ text }}</p>
+      <p class="hero-tagline" v-html="tagline" />
       <div class="hero-actions">
-        <a class="action-btn brand" href="/how-to-start/">How to Start</a>
-        <a class="action-btn alt" href="https://brilliance-admin.com/" target="_blank">Live Demo</a>
-        <a class="action-btn alt" href="https://github.com/brilliance-admin/backend-python" target="_blank">GitHub</a>
+        <slot />
       </div>
     </div>
     <div class="hero-image">
-      <img src="/all-devices-black.png" alt="Brilliance Admin Preview" />
+      <img :src="image" :alt="imageAlt" />
     </div>
   </div>
 </template>
@@ -68,7 +69,7 @@
   flex-wrap: wrap;
 }
 
-.action-btn {
+.hero-actions a {
   display: inline-block;
   padding: 10px 24px;
   border-radius: 20px;
@@ -78,16 +79,16 @@
   transition: opacity 0.2s;
 }
 
-.action-btn:hover {
+.hero-actions a:hover {
   opacity: 0.85;
 }
 
-.action-btn.brand {
+.hero-actions a.brand {
   background: var(--vp-c-brand-1);
   color: var(--vp-c-white, #fff);
 }
 
-.action-btn.alt {
+.hero-actions a.alt {
   border: 1px solid var(--vp-c-divider);
   color: var(--vp-c-text-1);
 }
