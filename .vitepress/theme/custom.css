@@ -1,6 +1,17 @@
 :root {
   --content-max-width: 1400px;
 }
+:root {
+  --vp-layout-max-width: 1600px;
+}
+
+.VPDoc .container {
+  max-width: 1400px !important;
+}
+
+.VPDoc .content-container {
+  max-width: 1000px !important;
+}
 
 /* Убрать ограничение ширины на главной */
 .VPPage .VPContent,
