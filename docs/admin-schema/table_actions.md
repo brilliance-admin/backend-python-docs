@@ -107,7 +107,7 @@ async def change_password(self, action_data: ActionData):
     return ActionResult('Password changed')
 ```
 
-The form supports all field types from [Table/Filter Fields](/docs/fields) and validates input before submission.
+The form supports all field types from [Table/FieldsSchema](/fields_schema/fields_schema) and validates input before submission.
 
 ## Action with confirmation
 

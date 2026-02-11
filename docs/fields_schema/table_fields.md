@@ -2,7 +2,7 @@
 
 Fields define table columns, filter inputs, and action form inputs.
 
-Used inside [FieldsSchema](/fields_schema/main) as class attributes or constructor arguments.
+Used inside [FieldsSchema](/fields_schema/fields_schema) as class attributes or constructor arguments.
 
 ## Common parameters
 

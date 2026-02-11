@@ -73,7 +73,7 @@ class UsersSchema(schema.FieldsSchema):
     _fields = ['id', 'username', 'email', 'is_active', 'created_at']
 ```
 
-Available field types [Table/Filters Fields](/admin-schema/table_fields).
+Available field types [Table/Filters Fields](/fields_schema/table_fields).
 
 ## get_list
 
