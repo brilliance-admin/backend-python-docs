@@ -41,3 +41,43 @@
 .VPContent {
   padding-top: 0 !important;
 }
+
+/* Code */
+:root {
+    --vp-code-block-color: rgba(255, 255, 245, 0.86);
+    --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.dark {
+    --vp-code-block-color: #F8F8F2;
+    --vp-code-block-bg: #1A1B26;
+}
+.vp-doc [class*='language-'] code span {
+}
+
+.vp-doc h1:not(:first-child) {
+    padding-top: 30px;
+}
+.vp-doc h1 {
+    font-size: 40px;
+    font-weight: 700;
+}
+.vp-doc h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.vp-doc h1 + h2,
+.vp-doc h1 + p + h2,
+.vp-doc h1 + p + table + h2 {
+  border-top: none;
+  padding-top: 0;
+}
+
+.img-preview {
+  text-align: center;
+  margin-top: 16px;
+}
+.img-preview img {
+  max-height: 400px;
+  display: inline;
+}

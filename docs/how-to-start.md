@@ -1,6 +1,10 @@
 # How to start
 
-todo
+To launch the admin panel you need to:
+
+1. [Install the package](#installation)
+2. [Describe your `AdminSchema` schema](#create-adminschema-instance) (tables, groups, authentication etc)
+3. [Mount it to ASGI app](#integration-with-asgi-frameworks) to your backend
 
 ## Installation
 
@@ -16,28 +20,22 @@ You need to generate `AdminSchema` instance:
 ``` python
 from brilliance_admin import schema
 
-
-class CategoryExample(schema.CategoryTable):
-    "Implementation of get_list and retrieve; update and create are optional"
-
+# SQLAlchemy example
+class UserAdmin(sqlalchemy.SQLAlchemyAdmin):
+    model = User
 
 admin_schema = schema.AdminSchema(
     title='Admin Panel',
     auth=YourAdminAuthentication(),
     groups=[
-        schema.Group(
-            slug='example',
-            categories=[
-                CategoryExample(),
-            ]
-        ),
+        schema.Group(slug='example', categories=[UserAdmin()]),
     ],
 )
 
 admin_app = admin_schema.generate_app()
 ```
 
-After that you need to add it to any ASGI server, so that this API can be acually used.
+After that you need to plug it to ASGI server.
 
 ## Integration with ASGI frameworks
 
@@ -86,9 +84,8 @@ app = LightStar(
 
 Can work with `uvicorn`, `daphne`, `hypercorn`
 
+**asgi.py**
 ``` python
-# asgi.py
-
 import os
 from django.core.asgi import get_asgi_application
 from your_project.admin import admin_app

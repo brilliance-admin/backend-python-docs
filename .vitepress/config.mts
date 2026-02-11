@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-
 const nav = {
   en: [
     { text: 'Documentation', link: '/how-to-start' },
@@ -10,7 +9,6 @@ const nav = {
     { text: 'Live Demo', link: 'https://brilliance-admin.com/' },
   ],
 }
-
 const sidebar = {
   en: [
     {
@@ -23,29 +21,30 @@ const sidebar = {
       ],
     },
     {
-      text: 'Admin Schema',
+      text: 'Admin Configs',
       items: [
-        { text: 'Main / Group / Category', link: '/admin-schema/main' },
+        { text: 'Main AdminSchema', link: '/admin-schema/main' },
         { text: 'Tables', link: '/admin-schema/tables' },
-        { text: 'Graphs', link: '/admin-schema/graphs' },
+        { text: 'Table/Filters Fields', link: '/admin-schema/table_fields' },
+        { text: 'Table Actions', link: '/admin-schema/table_actions' },
+        { text: 'Dashboard', link: '/admin-schema/dashboard' },
       ],
     },
     {
-      text: 'Integrations',
+      text: 'Customization',
       items: [
-        { text: 'SQLAlchemy', link: '/integration/sqlalchemy/' },
+        { text: 'Main', link: '/customization/main' },
       ],
     },
   ],
 }
-
 export default defineConfig({
   srcDir: 'docs',
-
   title: 'Brilliance Admin',
   description: ' ',
-
   head: [
+    ['link', { rel: 'icon', href: '/favicon.jpg' }],
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap' }],
     [
       'script',
       { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX' }
@@ -59,13 +58,72 @@ gtag('js', new Date());
 gtag('config', 'G-C2HD1DF49V');`
     ],
   ],
-
+  markdown: {
+    theme: {
+      light: 'github-light',
+      dark: {
+        name: 'brilliant-dark',
+        settings: [
+          {
+            scope: ['keyword', 'keyword.control', 'storage.type', 'storage.modifier'],
+            settings: { foreground: '#FF79C6' }
+          },
+          {
+            scope: ['string', 'string.quoted.single', 'string.quoted.double', 'string.quoted.docstring'],
+            settings: { foreground: '#50FA7B' }
+          },
+          {
+            scope: ['entity.name.function', 'support.function', 'meta.function-call.generic'],
+            settings: { foreground: '#61AFEF' }
+          },
+          {
+            scope: ['entity.name.type', 'entity.name.class', 'support.class', 'entity.other.inherited-class'],
+            settings: { foreground: '#E5C07B' }
+          },
+          {
+            scope: ['variable', 'variable.parameter', 'variable.other'],
+            settings: { foreground: '#F8F8F2' }
+          },
+          {
+            scope: ['comment', 'comment.line', 'comment.block'],
+            settings: { foreground: '#6272A4', fontStyle: 'italic' }
+          },
+          {
+            scope: ['constant', 'constant.numeric', 'constant.language'],
+            settings: { foreground: '#BD93F9' }
+          },
+          {
+            scope: ['punctuation', 'meta.brace', 'punctuation.definition.parameters'],
+            settings: { foreground: '#F8F8F2' }
+          },
+          {
+            scope: ['keyword.operator', 'keyword.operator.assignment'],
+            settings: { foreground: '#FF79C6' }
+          },
+          {
+            scope: ['source.python'],
+            settings: { foreground: '#F8F8F2' }
+          },
+          {
+            scope: ['meta.function-call.arguments'],
+            settings: { foreground: '#F8F8F2' }
+          },
+          {
+            scope: ['variable.parameter.function.keyword'],
+            settings: { foreground: '#FFB86C' }
+          },
+        ],
+        fg: '#F8F8F2',
+        bg: '#1A1B26',
+        type: 'dark',
+      }
+    }
+  },
   vite: {
     ssr: {
       noExternal: ['vue3-compare-image'],
     },
   },
-
   vue: {
     template: {
       compilerOptions: {
@@ -73,7 +131,6 @@ gtag('config', 'G-C2HD1DF49V');`
       },
     },
   },
-
   locales: {
     root: {
       label: 'English',
@@ -84,10 +141,12 @@ gtag('config', 'G-C2HD1DF49V');`
       },
     },
   },
-
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/brilliance-admin/backend-python' },
     ],
+    outline: {
+      level: [1, 2, 3],
+    },
   },
 })
