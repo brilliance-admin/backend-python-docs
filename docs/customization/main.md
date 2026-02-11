@@ -10,6 +10,15 @@ If you have ideas on what should be covered, I'd be happy to hear them in an iss
 The frontend runs on a pre-built frontend - [Repo Vue3 + Vuetify](https://github.com/brilliance-admin/frontend). \
 The project does not use templates, except for one that renders this frontend.
 
-## In case you want to customize it more
+## Custom frontend
 
-todo
+If the built-in customization options are not enough, you can fork and build your own frontend. \
+Clone the [frontend repository](https://github.com/brilliance-admin/frontend), make your changes, build the project, and point Brilliance Admin to your custom static files using the `static_prefix` parameter in `AdminSchema`.
+``` python
+admin_schema = schema.AdminSchema(
+    title='My Admin',
+    auth=auth,
+    categories=[...],
+    static_prefix='https://cdn.example.com/admin-static/',
+)
+```

@@ -16,7 +16,7 @@ pip install brilliance-admin
 
 ## Create `AdminSchema` instance
 
-You need to generate `AdminSchema` instance:
+You need to generate `AdminSchema` (see [AdminSchema](/admin-schema/main)) instance:
 ``` python
 from brilliance_admin import schema
 

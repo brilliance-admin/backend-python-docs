@@ -25,15 +25,32 @@ const sidebar = {
       items: [
         { text: 'Main AdminSchema', link: '/admin-schema/main' },
         { text: 'Tables', link: '/admin-schema/tables' },
-        { text: 'Table/Filters Fields', link: '/admin-schema/table_fields' },
         { text: 'Table Actions', link: '/admin-schema/table_actions' },
         { text: 'Dashboard', link: '/admin-schema/dashboard' },
+        { text: 'Category Link', link: '/admin-schema/category_link' },
+      ],
+    },
+    {
+      text: 'Fields Schema',
+      items: [
+        { text: 'FieldsSchema', link: '/fields_schema/fields_schema' },
+        { text: 'Fields', link: '/fields_schema/table_fields' },
+        { text: 'Autocomplete', link: '/autocomplete' },
+      ],
+    },
+    {
+      text: 'SQLAlchemy Integration',
+      items: [
+        { text: 'Authentication', link: '/integrations/sqlalchemy/authentication' },
+        { text: 'Tables', link: '/integrations/sqlalchemy/tables' },
+        { text: 'Fields', link: '/integrations/sqlalchemy/fields' },
       ],
     },
     {
       text: 'Customization',
       items: [
         { text: 'Main', link: '/customization/main' },
+        { text: 'Colors', link: '/customization/colors' },
       ],
     },
   ],
