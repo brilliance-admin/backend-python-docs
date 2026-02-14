@@ -34,10 +34,6 @@
   padding-right: 24px;
 }
 
-.VPContent {
-  padding-top: 0 !important;
-}
-
 /* Code */
 :root {
     --vp-code-block-color: rgba(255, 255, 245, 0.86);
