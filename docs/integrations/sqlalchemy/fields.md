@@ -72,7 +72,9 @@ Pass extra fields to the constructor to override or add to auto-generated ones:
 table_filters = sqlalchemy.SQLAlchemyFieldsSchema(
     model=User,
     created_at=schema.DateTimeField(range=True),
-    last_login=schema.DateTimeField(range=True),
+    extra_kwargs={
+        'last_login': {'range': True},
+    },
 )
 ```
 
@@ -92,6 +94,7 @@ For `many=False` (foreign key) — single-select autocomplete. For `many=True` (
 | `target_model` | Related SQLAlchemy model class |
 | `many` | `True` for list relationships |
 | `dual_list` | Enable dual-list UI for many relationships |
+| `filter_fn` | Custom async/sync function to modify the autocomplete query |
 
 These fields are generated automatically — you don't need to configure them manually unless you want to customize behavior.
 
@@ -107,3 +110,51 @@ class User(Base):
         return self.username
 ```
 :::
+
+::: tip
+Define `__search_fields__` on the related model to enable text search in autocomplete. Without it, autocomplete searches by primary key only.
+``` python
+class Currency(Base):
+    __search_fields__ = ['title', 'char_code']
+```
+:::
+
+### filter_fn
+
+A function that receives the query statement, autocomplete data, and the current user. Use it to restrict which records appear in the autocomplete dropdown.
+
+Signature: `async def filter_fn(stmt, data, user) -> stmt`
+
+For `data` parameter details, see [AutocompleteData](/autocomplete#autocompletedata).
+
+``` python
+from brilliance_admin.auth import UserABC
+from brilliance_admin.schema.table.table_models import AutocompleteData
+from your_app.models import User
+
+async def users_filter(stmt, data: AutocompleteData, user: UserABC):
+    return stmt.where(User.is_active == True)
+
+table_filters = sqlalchemy.SQLAlchemyFieldsSchema(
+    model=UserSession,
+    extra_kwargs={
+        'user_id': {'filter_fn': users_filter},
+    },
+)
+```
+
+## Autocomplete search
+
+By default, autocomplete searches by primary key only. To enable text search across specific columns, define `__search_fields__` on the related model:
+
+``` python
+class Currency(Base):
+    __tablename__ = 'currency'
+    __search_fields__ = ['title', 'char_code']
+
+    id = sa.Column(sa.Integer, primary_key=True)
+    title = sa.Column(sa.String(100))
+    char_code = sa.Column(sa.String(10))
+```
+
+When `__search_fields__` is defined, the autocomplete input will support search operators (see [Search](/integrations/sqlalchemy/tables#search)).

@@ -24,6 +24,11 @@ The autocomplete request contains:
 | `existed_choices` | Already selected values (to include them in results) |
 | `is_filter` | `True` if the request comes from a filter field |
 | `action_name` | Action name if the request comes from an action form |
+| `form_data` | Current form data — all field values at the time of the request |
+
+::: tip
+Use `form_data` inside `filter_fn` to filter autocomplete results based on other fields in the form. For example, show only terminals that belong to the selected merchant.
+:::
 
 ## Custom autocomplete
 

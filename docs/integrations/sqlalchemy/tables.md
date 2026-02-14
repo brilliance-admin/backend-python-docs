@@ -41,6 +41,29 @@ class UserAdmin(sqlalchemy.SQLAlchemyAdmin):
 
 All other parameters are inherited from [CategoryTable](/admin-schema/tables) — `slug`, `title`, `icon`, `ordering_fields`, etc.
 
+
+## Search
+
+Tables and autocomplete fields support text search with operators for flexible querying:
+
+| Operator | Description | Example | Matches |
+|----------|-------------|---------|---------|
+| `"text"` | Exact match | `"Chrome"` | `Chrome` but not `Chrome Mobile` |
+| `%` | Any sequence of characters | `%fire%` | `Firefox`, `Firebird` |
+| `_` | Any single character | `19_.168.1.1` | `192.168.1.1`, `193.168.1.1` |
+
+All search is case-insensitive.
+
+### Search Example
+
+| Input | What it finds |
+|-------|---------------|
+| `Moscow` | Records where any search field equals `Moscow` |
+| `%Moscow%` | Records containing `Moscow` anywhere in the field |
+| `"127.0.0.1"` | Exact match for `127.0.0.1` |
+| `192.168.%` | IP addresses starting with `192.168.` |
+| `Chr_me` | Matches `Chrome`, `Chrme` would not match (wrong length) |
+
 ### Auto-detected defaults
 
 Several parameters are resolved automatically if not set explicitly:
@@ -107,20 +130,6 @@ class UserAdmin(sqlalchemy.SQLAlchemyAdmin):
         # only show active users
         return stmt.where(User.is_active == True)
 ```
-
-## Search
-
-When `search_fields` is set, the search input appears in the table header. Search uses case-insensitive `ILIKE` across all specified columns, combined with `OR`.
-
-``` python
-class UserAdmin(sqlalchemy.SQLAlchemyAdmin):
-    model = User
-    db_async_session = db.async_session
-
-    search_fields = ['username', 'email', 'first_name', 'last_name']
-```
-
-All columns in `search_fields` are cast to `String` before comparison, so numeric and other column types work as well.
 
 ## Filtering
 
