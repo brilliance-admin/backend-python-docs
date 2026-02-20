@@ -67,6 +67,7 @@ Dropdown select with colored tags. Requires an `Enum` class with `value`, `label
 | `choices` <Badge type="danger" text="required" /> | Enum class |
 | `variant` | Vuetify chip variant (default `'elevated'`) |
 | `size` | Vuetify chip size (default `'default'`) |
+
 ``` python
 from enum import Enum
 
@@ -112,7 +113,7 @@ File upload. No additional parameters.
 
 ## RelatedField
 
-Base field for related record selection. Renders as an autocomplete input in the UI. Used directly only for custom integrations — for SQLAlchemy, use [SQLAlchemyRelatedField](/integrations/sqlalchemy/fields#sqlalchemyrelatedfield) which is auto-generated.
+Base field for related record selection. Renders as an autocomplete input in the UI. Used directly only for custom integrations — for SQLAlchemy, use [SQLAlchemyRelatedField](/integrations/sqlalchemy/related_field) which is auto-generated.
 
 | Parameter | Description |
 |-----------|-------------|

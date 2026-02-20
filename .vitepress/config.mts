@@ -42,8 +42,9 @@ const sidebar = {
       text: 'SQLAlchemy Integration',
       items: [
         { text: 'Authentication', link: '/integrations/sqlalchemy/authentication' },
-        { text: 'Tables', link: '/integrations/sqlalchemy/tables' },
-        { text: 'Fields', link: '/integrations/sqlalchemy/fields' },
+        { text: 'SQLAlchemyAdmin', link: '/integrations/sqlalchemy/table_schema' },
+        { text: 'SQLAlchemyFieldsSchema', link: '/integrations/sqlalchemy/fields_schema' },
+        { text: 'Related Field', link: '/integrations/sqlalchemy/related_field' },
       ],
     },
     {

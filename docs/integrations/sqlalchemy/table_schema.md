@@ -1,8 +1,6 @@
-# SQLAlchemy Tables
+# SQLAlchemy Table
 
-Built-in integration with SQLAlchemy for tables with automatic CRUD, filtering, and autocomplete.
-
-## SQLAlchemyAdmin
+`sqlalchemy.SQLAlchemyAdmin` - Built-in integration with SQLAlchemy for tables with automatic CRUD, filtering, and autocomplete.
 
 Drop-in replacement for `CategoryTable` that handles `get_list`, `retrieve`, `create`, `update` and `autocomplete` automatically based on a SQLAlchemy model.
 
