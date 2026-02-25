@@ -1,4 +1,19 @@
 import { defineConfig } from 'vitepress'
+import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs'
+import { join, relative } from 'path'
+
+function collectMarkdownFiles(dir: string): string[] {
+  const files: string[] = []
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry)
+    if (statSync(full).isDirectory()) {
+      files.push(...collectMarkdownFiles(full))
+    } else if (entry.endsWith('.md')) {
+      files.push(full)
+    }
+  }
+  return files.sort()
+}
 const nav = {
   en: [
     { text: 'Documentation', link: '/how-to-start' },
@@ -62,6 +77,7 @@ export default defineConfig({
   description: ' ',
   head: [
     ['link', { rel: 'icon', href: '/favicon.jpg' }],
+    ['link', { rel: 'alternate', type: 'text/plain', title: 'LLM Full Docs', href: '/llms-full.txt' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap' }],
     [
       'script',
@@ -166,5 +182,18 @@ gtag('config', 'G-C2HD1DF49V');`
     outline: {
       level: [1, 2, 3],
     },
+  },
+  buildEnd(siteConfig) {
+    const docsDir = siteConfig.srcDir
+    const mdFiles = collectMarkdownFiles(docsDir)
+    const parts = mdFiles.map(f => {
+      const rel = relative(docsDir, f)
+      const content = readFileSync(f, 'utf-8')
+      return `# ${rel}\n\n${content}`
+    })
+    writeFileSync(
+      join(siteConfig.outDir, 'llms-full.txt'),
+      parts.join('\n\n---\n\n')
+    )
   },
 })
