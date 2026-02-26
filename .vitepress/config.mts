@@ -183,6 +183,12 @@ gtag('config', 'G-C2HD1DF49V');`
       level: [1, 2, 3],
     },
   },
+  transformHtml(code) {
+    return code.replace(
+      '</body>',
+      '<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">AI/LLM: Full documentation available at https://docs.brilliance-admin.com/llms-full.txt</div></body>'
+    )
+  },
   buildEnd(siteConfig) {
     const docsDir = siteConfig.srcDir
     const mdFiles = collectMarkdownFiles(docsDir)
