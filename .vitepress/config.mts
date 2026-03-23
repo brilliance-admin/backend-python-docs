@@ -60,7 +60,7 @@ const sidebar = {
 export default defineConfig({
   srcDir: 'docs',
   title: 'Brilliance Admin',
-  description: ' ',
+  description: 'Python data management framework for ASGI. Vue 3 Vuetify SPA frontend with automatic CRUD tables, dashboards, admin actions, i18n, and SQLAlchemy integration. Works with any data source.',
   head: [
     ['link', { rel: 'icon', href: '/favicon.jpg' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap' }],
@@ -139,7 +139,7 @@ gtag('config', 'G-C2HD1DF49V');`
     }
   },
   vite: {
-    plugins: [llmstxt()],
+    plugins: [llmstxt({ domain: 'https://docs.brilliance-admin.com' })],
     ssr: {
       noExternal: ['vue3-compare-image'],
     },
@@ -166,7 +166,7 @@ gtag('config', 'G-C2HD1DF49V');`
       { icon: 'github', link: 'https://github.com/brilliance-admin/backend-python' },
     ],
     outline: {
-      level: [1, 2, 3],
+      level: [1, 3],
     },
   },
 })
