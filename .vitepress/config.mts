@@ -1,19 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync } from 'fs'
-import { join, relative } from 'path'
-
-function collectMarkdownFiles(dir: string): string[] {
-  const files: string[] = []
-  for (const entry of readdirSync(dir)) {
-    const full = join(dir, entry)
-    if (statSync(full).isDirectory()) {
-      files.push(...collectMarkdownFiles(full))
-    } else if (entry.endsWith('.md')) {
-      files.push(full)
-    }
-  }
-  return files.sort()
-}
+import llmstxt from 'vitepress-plugin-llms'
 const nav = {
   en: [
     { text: 'Documentation', link: '/how-to-start' },
@@ -77,7 +63,6 @@ export default defineConfig({
   description: ' ',
   head: [
     ['link', { rel: 'icon', href: '/favicon.jpg' }],
-    ['link', { rel: 'alternate', type: 'text/plain', title: 'LLM Docs', href: '/llms.txt' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap' }],
     [
       'script',
@@ -154,6 +139,7 @@ gtag('config', 'G-C2HD1DF49V');`
     }
   },
   vite: {
+    plugins: [llmstxt()],
     ssr: {
       noExternal: ['vue3-compare-image'],
     },
@@ -182,44 +168,5 @@ gtag('config', 'G-C2HD1DF49V');`
     outline: {
       level: [1, 2, 3],
     },
-  },
-  transformHtml(code) {
-    return code.replace(
-      '</body>',
-      '<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">AI/LLM: Documentation index available at https://docs.brilliance-admin.com/llms.txt</div></body>'
-    )
-  },
-  buildEnd(siteConfig) {
-    const docsDir = siteConfig.srcDir
-    const mdFiles = collectMarkdownFiles(docsDir)
-    const baseUrl = 'https://docs.brilliance-admin.com'
-    const tocLines: string[] = [
-      '# Brilliance Admin',
-      '',
-      '> Python admin panel framework with automatic CRUD, dashboards, and SQLAlchemy integration.',
-      '',
-      '## Docs',
-    ]
-    for (const f of mdFiles) {
-      const rel = relative(docsDir, f)
-      if (rel === 'index.md') continue
-      const content = readFileSync(f, 'utf-8')
-      const txtRel = rel.replace(/\.md$/, '.txt')
-      // Extract h1 title
-      const h1Match = content.match(/^#\s+(.+)/m)
-      const title = h1Match ? h1Match[1] : rel
-      // Extract h2 headings as topics
-      const h2s = [...content.matchAll(/^##\s+(.+)/gm)].map(m => m[1])
-      const topics = h2s.length > 0 ? `: ${h2s.join(', ')}` : ''
-      tocLines.push(`- [${title}](${baseUrl}/${txtRel})${topics}`)
-      // Write individual .txt file
-      const txtPath = join(siteConfig.outDir, txtRel)
-      const txtDir = join(txtPath, '..')
-      if (!statSync(txtDir, { throwIfNoEntry: false })) {
-        mkdirSync(txtDir, { recursive: true })
-      }
-      writeFileSync(txtPath, content)
-    }
-    writeFileSync(join(siteConfig.outDir, 'llms.txt'), tocLines.join('\n'))
   },
 })

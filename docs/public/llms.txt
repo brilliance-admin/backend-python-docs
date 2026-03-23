@@ -1,5 +1,0 @@
-# Brilliance Admin
-
-> Python admin panel framework for FastAPI/Starlette with SQLAlchemy integration
-
-- [Full Documentation](llms-full.txt)
