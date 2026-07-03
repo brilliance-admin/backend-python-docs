@@ -87,18 +87,22 @@ Can work with `uvicorn`, `daphne`, `hypercorn`
 **asgi.py**
 ``` python
 import os
-from django.core.asgi import get_asgi_application
-from your_project.admin import admin_app
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project.settings')
 
+from django.core.asgi import get_asgi_application
+from starlette.applications import Starlette
+from starlette.routing import Mount
+
 django_app = get_asgi_application()
 
+from your_project.admin import admin_app
 
-async def application(scope, receive, send):
-    if scope['type'] == 'http' and scope.get('path', '').startswith('/admin'):
-        await admin_app(scope, receive, send)
-        return
 
-    await django_app(scope, receive, send)
+application = Starlette(
+    routes=[
+        Mount('/admin', app=admin_app),
+        Mount('/', app=django_app),
+    ]
+)
 ```

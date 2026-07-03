@@ -35,6 +35,7 @@ const sidebar = {
       text: 'Fields Schema',
       items: [
         { text: 'FieldsSchema', link: '/fields_schema/fields_schema' },
+        { text: 'Formsets', link: '/fields_schema/formsets' },
         { text: 'Fields', link: '/fields_schema/table_fields' },
         { text: 'Autocomplete', link: '/autocomplete' },
       ],
@@ -43,9 +44,22 @@ const sidebar = {
       text: 'SQLAlchemy Integration',
       items: [
         { text: 'Authentication', link: '/integrations/sqlalchemy/authentication' },
-        { text: 'SQLAlchemyAdmin', link: '/integrations/sqlalchemy/table_schema' },
-        { text: 'SQLAlchemyFieldsSchema', link: '/integrations/sqlalchemy/fields_schema' },
+        { text: 'TableSchema', link: '/integrations/sqlalchemy/table_schema' },
+        { text: 'Fields', link: '/integrations/sqlalchemy/fields_schema' },
+        { text: 'Subcategories', link: '/integrations/sqlalchemy/subcategories' },
+        { text: 'InlineField', link: '/integrations/sqlalchemy/inline_field' },
         { text: 'Related Field', link: '/integrations/sqlalchemy/related_field' },
+      ],
+    },
+    {
+      text: 'Django Integration',
+      items: [
+        { text: 'Authentication', link: '/integrations/django/authentication' },
+        { text: 'TableSchema', link: '/integrations/django/table_schema' },
+        { text: 'Fields', link: '/integrations/django/fields_schema' },
+        { text: 'Subcategories', link: '/integrations/django/subcategories' },
+        { text: 'InlineField', link: '/integrations/django/inline_field' },
+        { text: 'Related Field', link: '/integrations/django/related_field' },
       ],
     },
     {
