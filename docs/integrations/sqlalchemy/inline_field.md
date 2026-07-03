@@ -39,4 +39,4 @@ How to use:
 - Nested inline is not supported.
 
 Example in repo:
-[terminal.py](/home/honnisha/Projects/brilliance-admin/backend-python/example/sections/terminal.py:24)
+[terminal.py](https://github.com/brilliance-admin/backend-python/tree/main/example/sections/terminal.py)

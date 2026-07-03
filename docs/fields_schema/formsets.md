@@ -96,4 +96,4 @@ formset = schema.FormSet(
 - Inline schemas can also have their own `formset`.
 
 Example in repo:
-[payments.py](/home/honnisha/Projects/brilliance-admin/backend-python/example/sections/payments.py:23)
+[payments.py](https://github.com/brilliance-admin/backend-python/tree/main/example/sections/payments.py)
