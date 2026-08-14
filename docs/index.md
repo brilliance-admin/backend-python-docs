@@ -58,7 +58,7 @@ const compRows = [
 </FeatureSection>
 
 <FeatureSection
-  title="Nested workflows without custom frontend"
+  title="Subcategories and inlines"
   description="Tables and dashboards can be used as subcategories, while related table rows can be embedded as inline sections. Foreign key models are easy to display and edit directly within the parent record."
   :slides="tableFeatureSlides"
   reversed

@@ -3,7 +3,7 @@
 Use `subcategories` when a parent SQLAlchemy admin should show child records in detail tabs.
 
 <div class="img-preview">
-  <img src="/subcategory.png" />
+  <img src="/subcategory-table.png" />
 </div>
 
 ```python
