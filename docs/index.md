@@ -13,6 +13,11 @@ const actionSlides = [
   { image: '/change-password.png', title: 'Custom form dialog' },
   { image: '/action-persistent.png', title: 'Persistent response message' },
 ]
+const tableFeatureSlides = [
+  { image: '/inline-dispute.png', title: 'Inline records' },
+  { image: '/subcategory-table.png', title: 'Table subcategories' },
+  { image: '/subcategory-dashboard.png', title: 'Dashboard subcategories' },
+]
 const compHeaders = ['Criterion', 'Brilliance Admin', 'Django Admin', 'FastAPI Admin', 'Starlette Admin', 'SQLAdmin']
 const compRows = [
   ['Base framework', 'FastAPI', 'Django', 'FastAPI', 'Starlette', 'FastAPI'],
@@ -46,8 +51,17 @@ const compRows = [
 
 <FeatureSection
   title="Tables with full CRUD support"
-  description="Filtering, sorting, and pagination out of the box. Auto-generated from your SQLAlchemy models, or defined manually from any data source."
+  description="Filtering, sorting, and pagination out of the box. Auto-generated from your SQLAlchemy/Django models, or defined manually from any data source."
   image="/table-black.png"
+>
+  <CodeBlock lang="python" :code="tableCode" />
+</FeatureSection>
+
+<FeatureSection
+  title="Nested workflows without custom frontend"
+  description="Tables and dashboards can be used as subcategories, while related table rows can be embedded as inline sections. Foreign key models are easy to display and edit directly within the parent record."
+  :slides="tableFeatureSlides"
+  reversed
 >
   <CodeBlock lang="python" :code="tableCode" />
 </FeatureSection>

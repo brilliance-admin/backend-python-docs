@@ -32,6 +32,17 @@ Requirements for `user_model`:
 - `username`
 - admin flag field, default `is_admin`
 
+For Django built-in auth models, this also works:
+
+```python
+auth = django.DjangoJWTAdminAuthentication(
+    secret=settings.SECRET_KEY,
+    user_model=User,
+    admin_field_name="is_staff",
+    password_validator=lambda user, password: user.check_password(password),
+)
+```
+
 ::: warning
 PyJWT is required.
 
