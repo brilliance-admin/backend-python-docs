@@ -60,6 +60,7 @@ const sidebar = {
         { text: 'Subcategories', link: '/integrations/django/subcategories' },
         { text: 'InlineField', link: '/integrations/django/inline_field' },
         { text: 'Related Field', link: '/integrations/django/related_field' },
+        { text: 'SynchronousOnly Handling', link: '/integrations/django/synchronous_only_handling' },
       ],
     },
     {
