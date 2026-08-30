@@ -55,6 +55,39 @@ class UsersTable(schema.CategoryTable):
 | `ordering_fields` | List of field names available for sorting |
 | `default_ordering` | Default sort field (prefix with `-` for descending) |
 
+## TableOptions
+
+Configure one table:
+
+```python
+class UsersTable(schema.CategoryTable):
+    options = schema.TableOptions(
+        fixed_header=True,
+        density='compact',
+    )
+```
+
+| Parameter | Description |
+|-----------|-------------|
+| `fit_screen` | Fit table columns into the available screen width |
+| `density` | Vuetify row density |
+| `font_size` | Table font size, for example `'0.85rem'` |
+| `cell_padding` | Cell padding, for example `'7px 8px'` |
+| `fixed_header` | Keep the table header visible while scrolling inside the table |
+
+Configure defaults for all tables without their own `options`:
+
+```python
+admin_schema = schema.AdminSchema(
+    default_table_options=schema.TableOptions(
+        fixed_header=True,
+    ),
+    # ...
+)
+```
+
+Table-level `options` have priority over `default_table_options`.
+
 ## FieldsSchema
 
 Defines columns for the table and fields for filters or action forms.

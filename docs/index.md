@@ -24,7 +24,7 @@ const compRows = [
   ['ASGI compatible', 'Yes', 'Partial', 'Yes', 'Yes', 'Yes'],
   ['Rendering model', 'Prebuilt Vue 3 + Vuetify SPA + Jinja2', 'Server-side Django templates', 'Server-side Jinja2 templates + Tabler UI', 'Server-side Jinja2 templates + Tabler UI', 'Server-side Jinja2 templates + Bootstrap'],
   ['Frontend architecture', 'Separate frontend (SPA)', 'Classic server-rendered UI', 'Server-rendered UI with JS interactivity', 'Server-rendered UI with JS interactivity', 'Server-rendered UI'],
-  ['Data source', 'Any source + SQLAlchemy', 'Django ORM', 'Tortoise ORM', 'Any source + SQLAlchemy, MongoDB', 'SQLAlchemy'],
+  ['Data source', 'Any source + SQLAlchemy/Django ORM', 'Django ORM', 'Tortoise ORM', 'Any source + SQLAlchemy, MongoDB', 'SQLAlchemy'],
   ['Multiple databases per model', 'Yes', 'Database routers', 'No (global engine)', 'Yes (session per ModelView)', 'No (single engine per Admin)'],
   ['Schema generation', 'User-defined format', 'From Django models', 'From ORM models', 'User-defined format', 'From SQLAlchemy models'],
   ['Async support', 'Yes', 'No', 'Yes', 'Yes', 'Yes'],
