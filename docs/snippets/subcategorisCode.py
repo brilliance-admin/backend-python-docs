@@ -1,0 +1,6 @@
+TerminalAdmin(
+    subcategories=[
+        TerminalDashboard(),
+        FeeAdmin(),
+    ],
+)

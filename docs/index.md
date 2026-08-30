@@ -8,6 +8,7 @@ import tableCode from './snippets/table.py?raw'
 import dashboardCode from './snippets/dashboard.py?raw'
 import actionsCode from './snippets/actions.py?raw'
 import adminExampleCode from './snippets/adminExample.py?raw'
+import subcategorisCode from './snippets/subcategorisCode.py?raw'
 
 const actionSlides = [
   { image: '/change-password.png', title: 'Custom form dialog' },
@@ -36,7 +37,8 @@ const compRows = [
 <HeroSection
   name="Brilliance Admin"
   text="Data Management Framework"
-  tagline="Simple and lightweight, powered by FastAPI and Vue3 Vuetify all-in-one. Integrated with SQLAlchemy. Inspired by Django Admin and DRF. <em>Some call it heavenly in its brilliance.</em>"
+  tagline="Simple and lightweight, powered by Python and Vue3 Vuetify all-in-one. Integrated with SQLAlchemy and Django ORM.
+  <em>Some call it heavenly in its brilliance.</em>"
   image="/all-devices-black.png"
   image-alt="Brilliance Admin Preview"
 >
@@ -50,7 +52,7 @@ const compRows = [
 </HeroSection>
 
 <FeatureSection
-  title="Tables with full CRUD support"
+  title="Access all your data from any source"
   description="Filtering, sorting, and pagination out of the box. Auto-generated from your SQLAlchemy/Django models, or defined manually from any data source."
   image="/table-black.png"
 >
@@ -59,18 +61,17 @@ const compRows = [
 
 <FeatureSection
   title="Subcategories and inlines"
-  description="Tables and dashboards can be used as subcategories, while related table rows can be embedded as inline sections. Foreign key models are easy to display and edit directly within the parent record."
+  description="For convenience, sections and forms can be nested. Dashboards can be nested as well."
   :slides="tableFeatureSlides"
   reversed
 >
-  <CodeBlock lang="python" :code="tableCode" />
+  <CodeBlock lang="python" :code="subcategorisCode" />
 </FeatureSection>
 
 <FeatureGrid>
   <FeatureGridCard
     title="Easy Installation"
-  >
-  Built-in login page with customizable authentication. Supports any account source through a simple interface.<br>
+  ><br>
   Integrates with any ASGI-compatible server.
   <CodeBlock lang="shell" code="pip install brilliance-admin" />
   <CodeBlock lang="python" :code="adminExampleCode" />
@@ -80,14 +81,14 @@ const compRows = [
     title="Authentication Providers and i18n"
     image="/login-black.png"
   >
-  Supports any account source via a simple login and password interface.<br>
-  Built-in i18n support.
+  Simple login and password interface.<br>
+  Built-in Django and SQLAlchemy integrations, but you can use your own data source.<br>
   </FeatureGridCard>
 </FeatureGrid>
 
 <FeatureSection
   title="Admin Actions"
-  description="Easily create data actions with custom request forms. Responses can trigger toast notifications, persistent messages, or file downloads."
+  description="Easily create data actions with custom forms. Display the result in the format that works best for you - as a notification, HTML form, or file downloading."
   :slides="actionSlides"
 >
   <CodeBlock lang="python" :code="actionsCode" />
