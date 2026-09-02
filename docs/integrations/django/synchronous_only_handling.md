@@ -25,8 +25,8 @@ In this case, add `select_related` to `get_queryset`:
 class PeriodicFeeAdmin(django.DjangoAdmin):
     model = PeriodicFee
 
-    def get_queryset(self):
-        return super().get_queryset().select_related('currency')
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).select_related('currency')
 ```
 
 This check is run for FK/O2O related fields shown directly in `list_display`.
@@ -85,8 +85,8 @@ Fix it by adding `select_related` to `get_queryset`:
 class PeriodicFeeAdmin(django.DjangoAdmin):
     model = PeriodicFee
 
-    def get_queryset(self):
-        return super().get_queryset().select_related('currency')
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).select_related('currency')
 ```
 
 If the related object is loaded, but its `__str__` reads another relation, load the full path:
@@ -95,8 +95,8 @@ If the related object is loaded, but its `__str__` reads another relation, load 
 class MemberTokenAdmin(django.DjangoAdmin):
     model = MemberToken
 
-    def get_queryset(self):
-        return super().get_queryset().select_related('member__user')
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).select_related('member__user')
 ```
 
 Or define async title logic:

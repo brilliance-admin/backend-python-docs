@@ -61,6 +61,7 @@ const sidebar = {
         { text: 'InlineField', link: '/integrations/django/inline_field' },
         { text: 'Related Field', link: '/integrations/django/related_field' },
         { text: 'SynchronousOnly Handling', link: '/integrations/django/synchronous_only_handling' },
+        { text: 'Export', link: '/integrations/django/export' },
       ],
     },
     {

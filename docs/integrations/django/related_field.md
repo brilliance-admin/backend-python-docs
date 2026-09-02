@@ -75,6 +75,6 @@ Single FK fields are loaded by the section queryset:
 class PaymentAdmin(django.DjangoAdmin):
     model = Payment
 
-    def get_queryset(self):
-        return super().get_queryset().select_related('buyer')
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).select_related('buyer')
 ```
