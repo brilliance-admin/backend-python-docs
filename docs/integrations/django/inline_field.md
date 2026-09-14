@@ -33,6 +33,8 @@ How to add:
 | `select_related` | FK eager loading for child rows |
 | `prefetch_related` | Prefetch eager loading for child rows |
 | `get_queryset` | Custom child queryset builder |
+| `get_data` | Custom child data loader from the parent record |
+| `table_view` | Render read-only rows as a table |
 
 ## Queryset
 
@@ -73,6 +75,39 @@ children = django.DjangoInlineField(
 `extra` contains the current parent `record`, `user`, and `debug`.
 If `get_queryset` is set, `select_related` and `prefetch_related` are not applied automatically.
 If an inline row `__str__` or related field reads FK data, load it here.
+
+## Table view
+
+For a compact read-only representation, add `table_view=True`:
+
+```python
+children = django.DjangoInlineField(
+    many=True,
+    read_only=True,
+    table_view=True,
+    table_schema=ChildSchema(),
+)
+```
+
+## Custom data
+
+Use `get_data` when rows are not available directly from a relation on the parent.
+The callback receives the parent record and `extra`; it may be `def` or `async def`.
+It must return a Django `QuerySet`, related manager, or list.
+
+```python
+async def get_children(parent, extra):
+    source = await parent.sources.aget()
+    return source.children.all()
+
+
+children = django.DjangoInlineField(
+    many=True,
+    read_only=True,
+    table_schema=ChildSchema(),
+    get_data=get_children,
+)
+```
 
 How to use:
 

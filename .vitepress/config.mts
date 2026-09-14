@@ -27,6 +27,7 @@ const sidebar = {
         { text: 'Main AdminSchema', link: '/admin-schema/main' },
         { text: 'Tables', link: '/admin-schema/tables' },
         { text: 'Table Actions', link: '/admin-schema/table_actions' },
+        { text: 'History Logs', link: '/admin-schema/history_logs' },
         { text: 'Dashboard', link: '/admin-schema/dashboard' },
         { text: 'Category Link', link: '/admin-schema/category_link' },
       ],
@@ -62,6 +63,7 @@ const sidebar = {
         { text: 'Related Field', link: '/integrations/django/related_field' },
         { text: 'SynchronousOnly Handling', link: '/integrations/django/synchronous_only_handling' },
         { text: 'Export', link: '/integrations/django/export' },
+        { text: 'History Logs', link: '/integrations/django/history_logs' },
       ],
     },
     {
