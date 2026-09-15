@@ -54,7 +54,7 @@ const compRows = [
 <FeatureSection
   title="Access all your data from any source"
   description="Filtering, sorting, and pagination out of the box. Auto-generated from your SQLAlchemy/Django models, or defined manually from any data source."
-  image="/table-black.png"
+  image="/table-example.png"
 >
   <CodeBlock lang="python" :code="tableCode" />
 </FeatureSection>

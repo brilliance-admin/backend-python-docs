@@ -24,14 +24,16 @@ class HistoryProvider(HistoryLogsProvider):
 
 ## Configure a Provider
 
-Assign a provider class to a table category:
+Assign a provider class to `AdminSchema`:
 
 ```python
-class UsersTable(CategoryTable):
-    history_change_provider = HistoryProvider
+admin_schema = schema.AdminSchema(
+    # ...
+    history_change_provider=HistoryProvider,
+)
 ```
 
-Set `history_change_provider = None` to disable history logging.
+Set `history_change_provider=None` to disable history logging.
 
 ## Default Provider
 

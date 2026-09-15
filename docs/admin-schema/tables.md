@@ -1,7 +1,7 @@
 # Tables
 
 <div class="img-preview">
-  <img src="/table-black.png" />
+  <img src="/table-example.png" />
 </div>
 
 - `brilliance_admin.schema.CategoryTable`

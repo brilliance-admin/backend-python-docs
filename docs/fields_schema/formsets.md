@@ -51,6 +51,7 @@ Parameters:
 |-----------|-------------|
 | `title` | Field slug |
 | `col_span` | Width in the grid |
+| `rule` | `AJVRule` condition for displaying the field |
 
 Example:
 
@@ -60,6 +61,22 @@ formset = schema.FormSet(
         schema.FormField('amount', col_span=6),
         schema.FormField('endpoint', col_span=6),
     ]
+)
+```
+
+## Conditional fields
+
+`FormField.rule` validates the current form data with [AJV](https://ajv.js.org/json-schema.html).
+The field is displayed only when the rule is valid.
+
+```python
+schema.FormField(
+    'error_message',
+    rule=schema.AJVRule(
+        type='object',
+        properties={'is_throw_error': {'const': True}},
+        required=['is_throw_error'],
+    ),
 )
 ```
 

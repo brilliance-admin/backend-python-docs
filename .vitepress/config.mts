@@ -50,6 +50,7 @@ const sidebar = {
         { text: 'Subcategories', link: '/integrations/sqlalchemy/subcategories' },
         { text: 'InlineField', link: '/integrations/sqlalchemy/inline_field' },
         { text: 'Related Field', link: '/integrations/sqlalchemy/related_field' },
+        { text: 'History Logs', link: '/integrations/sqlalchemy/history_logs' },
       ],
     },
     {
