@@ -54,6 +54,11 @@ class UsersTable(schema.CategoryTable):
 | `search_help` | Placeholder/help text for the search input |
 | `ordering_fields` | List of field names available for sorting |
 | `default_ordering` | Default sort field (prefix with `-` for descending) |
+| `count_provider` | Optional provider for total record and page count calculation |
+
+### Count provider
+
+`count_provider` accepts a `CountProvider` implementation. It controls total record and page count calculation.
 
 ## TableOptions
 

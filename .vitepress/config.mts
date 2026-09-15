@@ -51,6 +51,7 @@ const sidebar = {
         { text: 'InlineField', link: '/integrations/sqlalchemy/inline_field' },
         { text: 'Related Field', link: '/integrations/sqlalchemy/related_field' },
         { text: 'History Logs', link: '/integrations/sqlalchemy/history_logs' },
+        { text: 'Count Providers', link: '/integrations/sqlalchemy/count_providers' },
       ],
     },
     {
@@ -65,6 +66,7 @@ const sidebar = {
         { text: 'SynchronousOnly Handling', link: '/integrations/django/synchronous_only_handling' },
         { text: 'Export', link: '/integrations/django/export' },
         { text: 'History Logs', link: '/integrations/django/history_logs' },
+        { text: 'Count Providers', link: '/integrations/django/count_providers' },
       ],
     },
     {
