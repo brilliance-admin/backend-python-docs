@@ -43,7 +43,7 @@ const compRows = [
   image-alt="Brilliance Admin Preview"
 >
   <a class="brand" href="/how-to-start/">How to Start</a>
-  <a class="alt" href="https://brilliance-admin.com/" target="_blank">Live Demo</a>
+  <a class="alt" href="https://brilliance-admin.com/admin/payments/payments/?page=1&limit=25&f-created_at__from=2026-09-09T00:00:00.000&f-created_at__to=2026-09-15T23:59:59.999&filter_subtable=created_at&filter_subtable_unit=1hour" target="_blank">Live Demo</a>
   <a class="alt" href="https://github.com/brilliance-admin/backend-python" target="_blank">GitHub</a>
   <p class="hero-remark">Every ⭐ on GitHub - helps to make it even more brilliant!</p>
   
