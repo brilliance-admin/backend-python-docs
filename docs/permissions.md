@@ -56,8 +56,6 @@ Each rule has one of three values:
 
 The Django and SQLAlchemy managers apply groups in ascending `priority` order, then apply personal settings. Higher-priority groups override lower-priority groups; personal settings have the highest priority. Access is denied if no level grants it.
 
-`is_superuser` allows all actions at its level. A higher-priority level can override those permissions.
-
 Rule names include the section path and action:
 
 ```text

@@ -103,7 +103,7 @@ Groups are applied in ascending `priority` order. For equal priorities, the grou
 - `INHERIT` keeps the result from the previous level.
 - `ALLOW` grants access.
 - `DENY` denies access.
-- `is_superuser` grants all permissions at its level. Higher-priority settings can override them.
+- `is_superuser` grants all permissions except those explicitly denied at the same level. Higher-priority settings can override them.
 
 Access is denied unless a level grants it. Only explicit `allow` and `deny` rules are stored; `inherit` is omitted.
 
