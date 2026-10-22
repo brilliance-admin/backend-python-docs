@@ -15,7 +15,21 @@ All fields share these base parameters:
 | `required` | Mark field as required |
 | `read_only` | Disable editing |
 | `default` | Default value |
+| `default_fn` | Callback that computes the initial field value |
 | `header` | Show in table header |
+
+`default_fn` computes the initial field value when the form loads its defaults.
+It supports synchronous functions, asynchronous functions, and lambdas.
+It takes precedence over `default`, including when it returns `None`.
+It is not called when saving the record.
+
+```python
+from brilliance_admin import schema
+
+title = schema.StringField(
+    default_fn=lambda user, **context: f'Terminal by {user.username}',
+)
+```
 
 ## StringField
 

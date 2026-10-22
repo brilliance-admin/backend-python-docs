@@ -18,6 +18,7 @@ const sidebar = {
         { text: 'Overview', link: '/' },
         { text: 'How to Start', link: '/how-to-start' },
         { text: 'Authentication', link: '/authentication' },
+        { text: 'Permissions', link: '/permissions' },
         { text: 'Translations', link: '/translations' },
       ],
     },
@@ -58,6 +59,7 @@ const sidebar = {
       text: 'Django Integration',
       items: [
         { text: 'Authentication', link: '/integrations/django/authentication' },
+        { text: 'Permissions', link: '/integrations/django/permissions' },
         { text: 'TableSchema', link: '/integrations/django/table_schema' },
         { text: 'Fields', link: '/integrations/django/fields_schema' },
         { text: 'Subcategories', link: '/integrations/django/subcategories' },
