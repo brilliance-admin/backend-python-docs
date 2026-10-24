@@ -1,4 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
+import { h } from 'vue'
+import CopyOrDownloadAsMarkdownButtons from 'vitepress-plugin-llms/vitepress-components/CopyOrDownloadAsMarkdownButtons.vue'
 import FeatureSection from './FeatureSection.vue'
 import HeroSection from './HeroSection.vue'
 import ShowcaseSection from './ShowcaseSection.vue'
@@ -12,6 +14,14 @@ import './custom.css'
 
 export default {
   extends: DefaultTheme,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      'doc-before': () =>
+        h('div', { class: 'page-markdown-actions' }, [
+          h(CopyOrDownloadAsMarkdownButtons),
+        ]),
+    })
+  },
   enhanceApp({ app }) {
     app.use(VueCompareImage)
     app.component('FeatureSection', FeatureSection)

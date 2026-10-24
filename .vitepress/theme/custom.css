@@ -46,13 +46,6 @@
 .vp-doc [class*='language-'] code span {
 }
 
-.vp-doc h1:not(:first-child) {
-    padding-top: 30px;
-}
-.vp-doc h1 {
-    font-size: 40px;
-    font-weight: 700;
-}
 .vp-doc h2 {
     font-size: 30px;
     font-weight: 700;
@@ -72,4 +65,67 @@
 .img-preview img {
   max-height: 400px;
   display: inline;
+}
+
+.VPContent .VPDoc {
+  padding-top: 24px;
+}
+
+.page-markdown-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.page-markdown-actions .markdown-copy-buttons {
+  width: auto;
+  margin: 0;
+}
+
+.page-markdown-actions .markdown-copy-buttons-inner {
+  margin: 0;
+}
+
+.page-markdown-actions .dropdown-trigger {
+  font-size: 12px;
+}
+
+.page-markdown-actions .copy-page {
+  gap: 6px;
+  padding: 4px 8px;
+}
+
+.page-markdown-actions .divider {
+  height: 18px;
+}
+
+.page-markdown-actions .chevron-wrapper {
+  padding: 0 6px;
+}
+
+.page-markdown-actions .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+.page-markdown-actions .download-btn {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .VPDoc .content-container {
+    position: relative;
+  }
+
+  .page-markdown-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    margin-bottom: 0;
+  }
+
+  .VPDoc .vp-doc h1:first-child {
+    padding-right: 160px;
+  }
 }
