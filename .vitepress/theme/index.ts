@@ -1,4 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
+import { ClientOnly } from 'vitepress'
 import { h } from 'vue'
 import CopyOrDownloadAsMarkdownButtons from 'vitepress-plugin-llms/vitepress-components/CopyOrDownloadAsMarkdownButtons.vue'
 import FeatureSection from './FeatureSection.vue'
@@ -18,7 +19,9 @@ export default {
     return h(DefaultTheme.Layout, null, {
       'doc-before': () =>
         h('div', { class: 'page-markdown-actions' }, [
-          h(CopyOrDownloadAsMarkdownButtons),
+          h(ClientOnly, null, {
+            default: () => h(CopyOrDownloadAsMarkdownButtons),
+          }),
         ]),
     })
   },
