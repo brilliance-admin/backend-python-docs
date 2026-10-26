@@ -9,27 +9,53 @@ from brilliance_admin.schema.table.history_change_provider import HistoryLogsPro
 
 
 class HistoryProvider(HistoryLogsProvider):
-    async def save_retrieve(self, *, user, pk, data, **kwargs):
+    async def save_create(
+        self,
+        *,
+        category,
+        parent_category,
+        user,
+        pk,
+        data,
+        **kwargs,
+    ):
         ...
 
-    async def save_create(self, *, user, pk, data, **kwargs):
+    async def save_update(
+        self,
+        *,
+        category,
+        parent_category,
+        user,
+        pk,
+        before,
+        data,
+        language_context,
+        **kwargs,
+    ):
         ...
 
-    async def save_update(self, *, user, pk, before, data, **kwargs):
-        ...
-
-    async def save_admin_action(self, *, user, action_slug, action_data, **kwargs):
+    async def save_admin_action(
+        self,
+        *,
+        category,
+        parent_category,
+        user,
+        action_slug,
+        action_data,
+        **kwargs,
+    ):
         ...
 ```
 
 ## Configure a Provider
 
-Assign a provider class to `AdminSchema`:
+Assign a provider instance to `AdminSchema`:
 
 ```python
 admin_schema = schema.AdminSchema(
     # ...
-    history_change_provider=HistoryProvider,
+    history_change_provider=HistoryProvider(),
 )
 ```
 

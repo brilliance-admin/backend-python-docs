@@ -3,8 +3,11 @@ from brilliance_admin import schema
 admin_schema = schema.AdminSchema(
     title='Admin Panel',
     auth=YourAdminAuthentication(),
-    groups=[
-        schema.Group(slug='example', categories=[YourCategory()]),
+    categories=[
+        schema.CategoryGroup(
+            slug='example',
+            subcategories=[YourCategory()],
+        ),
     ],
 )
 admin_app = admin_schema.generate_app()

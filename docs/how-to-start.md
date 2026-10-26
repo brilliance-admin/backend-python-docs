@@ -18,7 +18,7 @@ pip install brilliance-admin
 
 You need to generate `AdminSchema` (see [AdminSchema](/admin-schema/main)) instance:
 ``` python
-from brilliance_admin import schema
+from brilliance_admin import schema, sqlalchemy
 
 # SQLAlchemy example
 class UserAdmin(sqlalchemy.SQLAlchemyAdmin):
@@ -27,8 +27,11 @@ class UserAdmin(sqlalchemy.SQLAlchemyAdmin):
 admin_schema = schema.AdminSchema(
     title='Admin Panel',
     auth=YourAdminAuthentication(),
-    groups=[
-        schema.Group(slug='example', categories=[UserAdmin()]),
+    categories=[
+        schema.CategoryGroup(
+            slug='example',
+            subcategories=[UserAdmin()],
+        ),
     ],
 )
 
@@ -83,6 +86,21 @@ app = LightStar(
 ### Django ASGI
 
 Can work with `uvicorn`, `daphne`, `hypercorn`
+
+Add the permissions application to `INSTALLED_APPS` in your Django settings:
+
+``` python
+INSTALLED_APPS = [
+    # Your other applications...
+    'brilliance_admin.integrations.django.permissions',
+]
+```
+
+Apply its migrations before starting the admin panel:
+
+``` shell
+python manage.py migrate brilliance_admin_permissions
+```
 
 **asgi.py**
 ``` python

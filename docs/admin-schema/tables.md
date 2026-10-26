@@ -32,7 +32,16 @@ class UsersTable(schema.CategoryTable):
     table_schema = UsersSchema()
     table_filters = UsersFiltersSchema()
 
-    async def get_list(self, list_data: ListData, user, language_context, admin_schema) -> TableListResult:
+    async def get_list(
+        self,
+        list_data: ListData,
+        user,
+        language_context,
+        parent_category=None,
+        parent_pk=None,
+        *,
+        admin_schema,
+    ) -> TableListResult:
         # fetch and return your data here
         ...
 ```
@@ -122,6 +131,7 @@ The main method that returns paginated data. Receives `ListData` with pagination
 | Parameter | Description |
 |-----------|-------------|
 | `page` | Current page number |
+| `limit` | Number of records per page |
 | `search` | Search query string |
 | `filters` | Dict of applied filter values |
 | `ordering` | Current sort field |
@@ -133,14 +143,25 @@ Return `TableListResult` with rows and total count:
 from brilliance_admin.schema.table.table_models import ListData, TableListResult
 
 
-async def get_list(self, list_data: ListData, user, language_context, admin_schema) -> TableListResult:
+async def get_list(
+    self,
+    list_data: ListData,
+    user,
+    language_context,
+    parent_category=None,
+    parent_pk=None,
+    *,
+    admin_schema,
+) -> TableListResult:
     # your data fetching logic
     rows = [
         {'id': 1, 'username': 'admin', 'email': 'admin@example.com'},
         {'id': 2, 'username': 'user', 'email': 'user@example.com'},
     ]
-    return TableListResult(rows=rows, total=len(rows))
+    return TableListResult(data=rows, total_count=str(len(rows)))
 ```
+
+`admin_schema` is passed by keyword. Custom overrides must accept the full signature, including parent category arguments. Read debug mode from `admin_schema.debug`.
 
 ## CRUD
 
@@ -149,15 +170,46 @@ Implement optional async methods to enable create, retrieve and update operation
 class CustomTable(schema.CategoryTable):
     ...
 
-    async def retrieve(self, pk, user, language_context, admin_schema) -> schema.RetrieveResult:
+    async def retrieve(
+        self,
+        pk,
+        user,
+        language_context,
+        parent_category=None,
+        parent_pk=None,
+        history_change_provider=None,
+        *,
+        admin_schema,
+    ) -> schema.RetrieveResult:
         # fetch record by pk
         return schema.RetrieveResult(data={'id': pk, 'username': 'admin'})
 
-    async def create(self, data, user, language_context, admin_schema) -> schema.CreateResult:
+    async def create(
+        self,
+        data,
+        user,
+        language_context,
+        parent_category=None,
+        parent_pk=None,
+        history_change_provider=None,
+        *,
+        admin_schema,
+    ) -> schema.CreateResult:
         # create record from data dict
         return schema.CreateResult(pk=1)
 
-    async def update(self, pk, data, user, language_context, admin_schema) -> schema.UpdateResult:
+    async def update(
+        self,
+        pk,
+        data,
+        user,
+        language_context,
+        parent_category=None,
+        parent_pk=None,
+        history_change_provider=None,
+        *,
+        admin_schema,
+    ) -> schema.UpdateResult:
         # update record by pk with data dict
         return schema.UpdateResult(pk=pk)
 ```

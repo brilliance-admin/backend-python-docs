@@ -10,6 +10,9 @@ It is the main configuration object that describes the entire admin panel: title
 |-----------|-------------|
 | `categories` <Badge type="danger" text="required" /> | List of root categories (tables, dashboards, links) displayed in the sidebar |
 | `auth` <Badge type="danger" text="required" /> | Authentication provider ([see Authentication](/authentication)) |
+| `permissions_manager` | Access control manager ([Permissions](/permissions)); defaults to `AllowAllPermissionsManager` |
+| `history_change_provider` | History provider instance ([History Logs](/admin-schema/history_logs)); defaults to `HistoryChangeDefaultLogs()`; use `None` to disable |
+| `default_table_options` | Default table appearance ([Tables](/admin-schema/tables#tableoptions)) |
 | `language_manager` | i18n configuration ([see Translations](/translations)) |
 
 ### Info
