@@ -87,21 +87,6 @@ app = LightStar(
 
 Can work with `uvicorn`, `daphne`, `hypercorn`
 
-Add the permissions application to `INSTALLED_APPS` in your Django settings:
-
-``` python
-INSTALLED_APPS = [
-    # Your other applications...
-    'brilliance_admin.integrations.django.permissions',
-]
-```
-
-Apply its migrations before starting the admin panel:
-
-``` shell
-python manage.py migrate brilliance_admin_permissions
-```
-
 **asgi.py**
 ``` python
 import os
