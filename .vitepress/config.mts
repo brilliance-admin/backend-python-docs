@@ -75,7 +75,6 @@ const sidebar = {
       text: 'Customization',
       items: [
         { text: 'Main', link: '/customization/main' },
-        { text: 'Colors', link: '/customization/colors' },
       ],
     },
   ],
