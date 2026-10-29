@@ -2,6 +2,10 @@
 
 Brilliance Admin supports history change providers. A provider saves events created by table operations.
 
+<div class="img-preview">
+  <img src="/history-logs.png" />
+</div>
+
 ## Provider Interface
 
 ```python

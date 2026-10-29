@@ -1,5 +1,9 @@
 # Permissions
 
+<div class="img-preview">
+  <img src="/permissions.png" />
+</div>
+
 Django integration provides storage and editing for personal permissions and permission groups.
 
 ## Installation

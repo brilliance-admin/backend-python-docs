@@ -1,5 +1,9 @@
 # Django Logs Provider
 
+<div class="img-preview">
+  <img src="/history-logs.png" />
+</div>
+
 `DjangoLogsProvider` saves table history events to the Django database.
 
 Add `DjangoLogsAdmin` to `AdminSchema.categories` to view history records:

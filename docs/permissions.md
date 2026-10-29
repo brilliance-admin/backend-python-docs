@@ -1,5 +1,9 @@
 # Permissions
 
+<div class="img-preview">
+  <img src="/permissions.png" />
+</div>
+
 Permissions control access to sections and actions. They are checked when generating the admin schema and when handling API requests. Unavailable sections and actions are hidden; requests without permission return `403`.
 
 ## Configuration
@@ -7,6 +11,10 @@ Permissions control access to sections and actions. They are checked when genera
 Pass a permissions manager to `AdminSchema`:
 
 ```python
+from brilliance_admin.permissions.allow_all import AllowAllPermissionsManager
+
+permissions_manager = AllowAllPermissionsManager()
+
 admin_schema = AdminSchema(
     ...,
     permissions_manager=permissions_manager,
@@ -14,6 +22,28 @@ admin_schema = AdminSchema(
 ```
 
 The default `AllowAllPermissionsManager` allows everything.
+
+## Checking permissions inside an action
+
+Use the same manager instance that you passed to `AdminSchema`:
+
+```python
+from brilliance_admin.schema.table.table_action import TableAction
+
+permissions = await permissions_manager.get_permissions(user)
+
+if permissions.has_action_permission(
+    group='example',
+    category='users',
+    action_type=TableAction.UPDATE,
+):
+    # Perform the operation that requires update permission.
+    ...
+```
+
+With `AllowAllPermissionsManager`, this check always returns `True`.
+
+## Custom manager
 
 A custom manager implements:
 
